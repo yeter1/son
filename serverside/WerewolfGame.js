@@ -58,7 +58,7 @@ game = class WerewolfGame {
                  if (state == RoleEnum.SEER) { targLength = sele.length - NUM_SEER; state=2;}
                  else if (state == RoleEnum.HUNTER) { targLength = sele.length - NUM_HUNTER}
                  else if (state == RoleEnum.VILLAGER) { targLength = sele.length - NUM_VILLAGER}
-                 else {}
+                 else {state=3}
               }
                  // We are done we should exit,  eh it do that for us
          }
@@ -203,7 +203,7 @@ game = class WerewolfGame {
                let numAliveVillagers = this.alivePlayers - numAliveWolves;
 	   
 	       if(numAliveWolves==0 && numAliveVillagers>=1) //no MukokoMaster!                                                                                                       
-                   return "Villagers Win!";
+                   return "Villagers of PP Comunity Win!";
 	       else //no villagers, only MukokoMaster!                                                                                  
 		   return "MukokoMaster Win!";
   
