@@ -23,19 +23,19 @@ game = class WerewolfGame {
 
      constructor(users){
           console.log("Entering Werewolf Game...");
-          const NUM_WEREWOLVES = 2;
+          const NUM_MukokoMaster = 1;
           const NUM_SEER = 1;
           const NUM_HUNTER = 1;
-          const NUM_VILLAGER = users.length - NUM_WEREWOLVES - NUM_SEER - NUM_HUNTER;
+          const NUM_VILLAGER = users.length - NUM_MukokoMaster - NUM_SEER - NUM_HUNTER;
 
          // Step 1: Determine random roles for each game connection
          this.players = [];// new HashTable(25); // Create a hashtable with 24 buckets   //idk the plan here but its def not working
-         // We must select two indices at random to be the werewolves.
+         // We must select two indices at random to be the MukokoMaster.
          var sele = []; //sele is a copy of user array  //new Array DOES NOT COPY, adds array into an array
               for(i=0; i<users.length; i++){
                 sele[i] = users[i];
               }
-         var targLength = sele.length - NUM_WEREWOLVES; // There will be two
+         var targLength = sele.length - NUM_MukokoMaster; // There will be two
          var state = RoleEnum.WEREWOLF;
          while (sele.length > 0)
          {
@@ -54,8 +54,8 @@ game = class WerewolfGame {
              if(sele.length == targLength){
                  // We need to switch to the next state
                  state += 1;
-                 if (state == RoleEnum.SEER) { targLength = sele.length - NUM_SEER}
-                 else if (state == RoleEnum.HUNTER) { targLength = sele.length - NUM_HUNTER}
+                 if (state == RoleEnum.HUNTER) { targLength = sele.length - NUM_SEER}
+                 else if (state == RoleEnum.VILLAGER) { targLength = sele.length - NUM_HUNTER}
                  else if (state == RoleEnum.VILLAGER) { targLength = sele.length - NUM_VILLAGER}
                  else {}
               }
@@ -180,7 +180,7 @@ game = class WerewolfGame {
           }
 
           isGameOver(){
-               //two win conditions: ONLY WEREWOLFS ARE ALIVE or ALL WEREWOLVES ARE DEAD AND at least 1 villager is alive
+               //two win conditions: ONLY WEREWOLFS ARE ALIVE or ALL MukokoMaster ARE DEAD AND at least 1 villager is alive
                let numAliveWolves= this.numWolfs;
                let numAliveVillagers = this.alivePlayers - numAliveWolves; // the correct number we are looking for is NON Werewolfs.
               
@@ -188,9 +188,9 @@ game = class WerewolfGame {
 	       console.log("Wolfs: "+ numAliveWolves);
 	       console.log("Villagers "+ numAliveVillagers);
              
-	       if(numAliveWolves==0 && numAliveVillagers>=1) //no werewolves!
+	       if(numAliveWolves==0 && numAliveVillagers>=1) //no MukokoMaster!
 		   return true;
-	       else if(numAliveWolves>0 && numAliveVillagers<=1) //no villagers, only werewolves! Also resolves 1v1 conflict
+	       else if(numAliveWolves>0 && numAliveVillagers<=1) //no villagers, only MukokoMaster! Also resolves 1v1 conflict
 		   return true;
 	       else
 		   return false;
@@ -201,10 +201,10 @@ game = class WerewolfGame {
 	       let numAliveWolves= this.numWolfs;
                let numAliveVillagers = this.alivePlayers - numAliveWolves;
 	   
-	       if(numAliveWolves==0 && numAliveVillagers>=1) //no werewolves!                                                                                                       
+	       if(numAliveWolves==0 && numAliveVillagers>=1) //no MukokoMaster!                                                                                                       
                    return "Villagers Win!";
-	       else //no villagers, only werewolves!                                                                                  
-		   return "Werewolves Win!";
+	       else //no villagers, only MukokoMaster!                                                                                  
+		   return "MukokoMaster Win!";
   
 	   }
 }
