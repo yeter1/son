@@ -166,7 +166,7 @@ function isAlphaNumeric(str) {
           let wordRole;
          
           if(myRole==0){
-            wordRole = "Werewolf";
+            wordRole = "MukokoMaster";
            // roleDescrip = "Eat a villager each night";
           }
           if(myRole==1){
@@ -174,7 +174,7 @@ function isAlphaNumeric(str) {
             //roleDescrip = "Each night, point at a player and learn if they are a werewolf";
           }
           if(myRole==2){
-            wordRole = "Hunter";
+            wordRole = "ErenOkten";
            // roleDescrip = "If you are killed, take someone down with you";
           }
           if(myRole==3){
@@ -197,7 +197,7 @@ function isAlphaNumeric(str) {
 	      $stDialogue.prepend('<p id="dayFormHeader"> It was a tie! Vote again </p>');
 	  }
 	  else{
-	      $stDialogue.prepend('<p id="dayFormHeader"> Who do you vote to lynch? </p>');
+	      $stDialogue.prepend('<p id="dayFormHeader"> Who do you vote to lynch in the middle of the PP? </p>');
 	  }
 	  if(myLife){
           let dayFormAdd = '';
@@ -350,7 +350,7 @@ function isAlphaNumeric(str) {
 		$nightForm.html("");
 	    }else if(myRole==3){
 
-  $stDialogue.prepend('<p class="nightTime">Thank your nonsense vote Hope you survive the night</p>');
+  $stDialogue.prepend('<p class="nightTime">Thank you for nonsense vote. Hope you survive the night (While waiting Heil Egemen)</p>');
       }
 	    socket.emit("night ready");
 	} 
@@ -361,7 +361,7 @@ function isAlphaNumeric(str) {
 		if(result==serverPlayerList[i].name)
 		    serverPlayerList[i].alive = false;
 	    }
-	    $stDialogue.prepend('<p>'+ result +' has been killed by the werewolfs! </p>');
+	    $stDialogue.prepend('<p>'+ result +' has been killed by the MukokoMaster! </p>');
 	    if(myName === result) myLife = false;
 	    updateUsernames();
     });
@@ -372,7 +372,7 @@ function isAlphaNumeric(str) {
 
     socket.on("hunter", function(){
 	    if(myRole==2){
-		$stDialogue.prepend('<p> Select who you would like to kill </p>');
+		$stDialogue.prepend('<p> Select who you would like to kill Master ErenOkten </p>');
 		$nightPrompt.show();
 		let nightFormAdd = '';
 
@@ -390,7 +390,7 @@ function isAlphaNumeric(str) {
 	         for(i=0; i<serverPlayerList.length; i++)
 		     if(serverPlayerList[i].role == 2)
 		         hunterName = serverPlayerList[i].name;
-	          $stDialogue.prepend('<p>' + hunterName + ' is the hunter!</p>');
+	          $stDialogue.prepend('<p>' + hunterName + ' is the ErenOkten!</p>');
 	    }
     });
     socket.on("hunter summary", function(choice){
@@ -403,7 +403,7 @@ function isAlphaNumeric(str) {
 		$dayPrompt.hide();
 		$stDialogue.prepend('<p>You have been killed and are now spectating</p>');
 	    }
-	    $stDialogue.prepend('<p> The hunter killed ' + choice + ' with their last breath</p>');
+	    $stDialogue.prepend('<p> The ErenOkten killed ' + choice + ' with their last breath</p>');
     });
     function updateUsernames(){
           $villagePlayerList.html("");
