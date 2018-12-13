@@ -119,7 +119,7 @@ socket.on("night res", function(nightRes){
 	   if(nightReadyCount == game.players.length){
 	          
 		   let decision =  game.night(nightResList); //changes game.players based on Vote                                                                                                   
-		   console.log("NIGHT VOTE OVER, WEREWOLVES TO KILL: "+ decision);
+		   console.log("NIGHT VOTE OVER, MukokoMaster TO KILL: "+ decision);
 		   nightResList =[];
 		   if(decision==="ERR_TIE"){
 		       io.sockets.emit("nightVote tie"); //just reset the poll for werewolfs, can't overhaul everything like when everyone is on the same page during the day  
