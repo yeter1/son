@@ -37,6 +37,7 @@ game = class WerewolfGame {
               }
          var targLength = sele.length - NUM_MukokoMaster; // There will be two
          var state = RoleEnum.WEREWOLF;
+
          while (sele.length > 0)
          {
              // Select random index. That user will become a werewolf
@@ -54,8 +55,8 @@ game = class WerewolfGame {
              if(sele.length == targLength){
                  // We need to switch to the next state
                  state += 1;
-                 if (state == RoleEnum.HUNTER) { targLength = sele.length - NUM_SEER}
-                 else if (state == RoleEnum.VILLAGER) { targLength = sele.length - NUM_HUNTER}
+                 if (state == RoleEnum.SEER) { targLength = sele.length - NUM_SEER; state=2;}
+                 else if (state == RoleEnum.HUNTER) { targLength = sele.length - NUM_HUNTER}
                  else if (state == RoleEnum.VILLAGER) { targLength = sele.length - NUM_VILLAGER}
                  else {}
               }
