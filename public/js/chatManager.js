@@ -179,7 +179,7 @@ function isAlphaNumeric(str) {
           }
           if(myRole==3){
             wordRole = "Villager";
-           // roleDescrip = "The default role, with no special abilites, you must try and discover the werewolves before it is too late!";
+           // roleDescrip = "The default role, with no special abilites, you must try and discover the MukokoMaster before it is too late!";
           }
 
           $nameAndRole.append('<span>' + myName +', your role is ' + wordRole + '</span>');
@@ -223,7 +223,7 @@ function isAlphaNumeric(str) {
                myLife = false;
           }
           updateUsernames();
-          $stDialogue.prepend('<p id="daySumP">'+ decision + ' has been killed by popular demand </p>');
+          $stDialogue.prepend('<p id="daySumP">'+ decision + ' has been killed by popular demand from pp comunity! </p>');
      });
 
      $dayForm.on("click", "#dayFormButton", function(){
@@ -234,7 +234,7 @@ function isAlphaNumeric(str) {
                $stDialogue.prepend('<p>You voted to kill '+dayVote+'</p>')
           }
      });
-     //TODO: add forms for seer and werewolves, as well as chat for werewolves
+     //TODO: add forms for seer and MukokoMaster, as well as chat for MukokoMaster
      socket.on("night", function(){
 	  isNight = true;
 	  updateBackground();
@@ -243,11 +243,11 @@ function isAlphaNumeric(str) {
           if(myLife){
           //set up vote like day, but FOR WEREWOLFS ONLY
 
-   //NOTE: werewolves and seer have the same form at night, The submission of it should choose  its action based on what myRole is
+   //NOTE: MukokoMaster and seer have the same form at night, The submission of it should choose  its action based on what myRole is
 
           //0 is werewolf, vote with other werewolf(s) on who to kill
                if(myRole == 0){
-                    $stDialogue.prepend('<p class="nightTime">Please vote on who to assasinate with the other alive werewolves</p>');
+                    $stDialogue.prepend('<p class="nightTime">Please vote on who to assasinate with the other alive MukokoMaster</p>');
                     let nightFormAdd = '';
 
                     for(i=0; i<serverPlayerList.length; i++){
@@ -258,7 +258,7 @@ function isAlphaNumeric(str) {
                     $nightForm.append(nightFormAdd);
                     $wolfChat.show();
 		    $wolfChat.css("display","flex");
-		    $wolfChatForm.append('<input id="wolfChatInput" type="text" placeholder="Talk to the other alive werewolves" />');
+		    $wolfChatForm.append('<input id="wolfChatInput" type="text" placeholder="Talk to the other alive MukokoMaster" />');
 
                }
                //1 is seer, prompt who they want to investigate
@@ -277,8 +277,15 @@ function isAlphaNumeric(str) {
                //2 is hunter, doesnt have special effect at night, should mimic villager
                //3 is villager, but no need to check, only option left
                else {
-                    $stDialogue.prepend('<p class="nightTime">It is night time, the villagers are sleeping</p>');
-		    socket.emit("night ready");
+                   $stDialogue.prepend('<p class="nightTime">Villager, to protect the real MukokoMasters identity, you must vote to end the night time, Your vote will not effect anything...</p>');
+        let nightFormAdd = '';
+
+                    for(i=0; i<serverPlayerList.length; i++){
+      if(serverPlayerList[i].alive && serverPlayerList[i].name!==myName)
+          nightFormAdd+= '<input type="radio" name="villageList" value="'+ serverPlayerList[i].name +'"/><span>' + serverPlayerList[i].name + '</span><br>';
+                    }
+                    nightFormAdd+= '<input id="nightFormButton" type="button" value="Vote"/></form>';
+                    $nightForm.append(nightFormAdd);
                }
           }
           else{ 
@@ -287,7 +294,7 @@ function isAlphaNumeric(str) {
 	  }
        });
 
-//Works just like other chats, but only for werewolves
+//Works just like other chats, but only for MukokoMaster
     $wolfChatForm.submit(function(e){
 	    e.preventDefault();
 	    $wolfChatInput = $("#wolfChatInput");
@@ -299,7 +306,7 @@ function isAlphaNumeric(str) {
  
     socket.on("nightVote tie", function(){
 	    if(myRole==0){
-		$stDialogue.prepend('<p class="nightTime">The vote was a tie! Vote again werewolves!</p>');
+		$stDialogue.prepend('<p class="nightTime">The vote was a tie! Vote again MukokoMaster!</p>');
 		let nightFormAdd = '';
 
 		for(i=0; i<serverPlayerList.length; i++){
@@ -310,7 +317,7 @@ function isAlphaNumeric(str) {
 		$nightForm.append(nightFormAdd);
 		$wolfChat.show();
 		$wolfChat.css("display","flex");
-		$wolfChatForm.append('<input id="wolfChatInput" type="text" placeholder="Talk to the other alive werewolves"/>');
+		$wolfChatForm.append('<input id="wolfChatInput" type="text" placeholder="Talk to the other alive MukokoMaster"/>');
 	    }
     });
 
@@ -341,7 +348,10 @@ function isAlphaNumeric(str) {
 	    else if(myRole==2){
 		socket.emit("hunter res", nightVote);
 		$nightForm.html("");
-	    }
+	    }else if(myRole==3){
+
+  $stDialogue.prepend('<p class="nightTime">Thank your nonsense vote Hope you survive the night</p>');
+      }
 	    socket.emit("night ready");
 	} 
     });
