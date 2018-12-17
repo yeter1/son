@@ -220,7 +220,7 @@ function isAlphaNumeric(str) {
                if(serverPlayerList[i].name===decision)
                     {
 
-                         serverPlayerList[i].alive = false;
+                         serverPlayerList[i].alive != serverPlayerList[i].alive;
                     }
           }
           if(myName===decision){
@@ -228,6 +228,11 @@ function isAlphaNumeric(str) {
           }
           updateUsernames();
           $stDialogue.prepend('<p id="daySumP">'+ decision + ' has been killed by popular demand from pp comunity! </p>');
+     });
+
+     socket.on("Test"{
+         
+          $stDialogue.prepend('Test1');
      });
 
      $dayForm.on("click", "#dayFormButton", function(){
