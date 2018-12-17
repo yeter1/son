@@ -92,6 +92,7 @@ socket.on("day res", function(dayRes){
 
           if(decision==="ERR_TIE"){
                serverDay(true);
+               $stDialogue.prepend("Haram Hata1");
           }
           else if(game.isGameOver()) gameOver();
           else{
