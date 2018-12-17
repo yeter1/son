@@ -99,9 +99,9 @@ socket.on("day res", function(dayRes){
                 for(i =0; i<game.players.length; i++)
 		    if(game.players[i].name === decision && game.players[i].role == 2)
 			hunterKilled();
-		setTimeout(function(){
+		
                      serverNight();
-                }, TIME_DELAY);
+                 
            }
      }
 });
