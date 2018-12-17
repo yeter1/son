@@ -218,9 +218,18 @@ function isAlphaNumeric(str) {
      socket.on("day summary", function(decision){
           for(i=0; i<serverPlayerList.length; i++){
                if(serverPlayerList[i].name===decision)
-                    {
+                    { if (!serverPlayerList[i].alive) 
+                      {
 
-                         serverPlayerList[i].alive = false;
+                            serverPlayerList[i].alive = true;
+                       }
+                     else
+                      {
+
+                        serverPlayerList[i].alive = false;
+                       }
+
+                         
                     }
           }
           if(myName===decision){
