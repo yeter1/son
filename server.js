@@ -93,22 +93,23 @@ socket.on("day res", function(dayRes){
           
           if(game.isGameOver()){
            gameOver();
-      }
+           }
           else{
             
                 io.sockets.emit("day summary", decision);
                  //client needs to figure out who died based on change in .alive booleans (in response to day summary request)
-                 serverNight();
-                for(i =0; i<game.players.length; i++)
+               
+                for(i =0; i<game.players.length; i++){
 		    if(game.players[i].name === decision && game.players[i].role == 2){
 
                hunterKilled();
               }
 			
 		
-                     
+                     }
                  
            }
+               serverNight();
      }
 });
 
