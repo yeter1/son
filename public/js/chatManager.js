@@ -211,8 +211,7 @@ function isAlphaNumeric(str) {
 	  }
 	  else{
       $stDialogue.prepend("It is day time, you are dead and spectating");
-      dayVote =="undefined";
-      socket.emit("day res", dayVote);
+      
     } 
      });
      socket.on("day summary", function(decision){
