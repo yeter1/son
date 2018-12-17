@@ -219,16 +219,8 @@ function isAlphaNumeric(str) {
           for(i=0; i<serverPlayerList.length; i++){
                if(serverPlayerList[i].name===decision)
                     {
-                      if (serverPlayerList[i].alive = true)
-                       {
-                            serverPlayerList[i].alive = false;
 
-                       }   else {
-                                     serverPlayerList[i].alive = true;
-                                  
-                                }
-
-                        
+                         serverPlayerList[i].alive = false;
                     }
           }
           if(myName===decision){
