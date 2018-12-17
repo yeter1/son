@@ -90,11 +90,8 @@ socket.on("day res", function(dayRes){
           console.log("DAY VOTE ENDED: "+ decision); //changes game.players based on Vote
           dayResList=[];
 
-          if(decision==="ERR_TIE"){
-               serverDay(true);
-               $stDialogue.prepend("Haram");
-          }
-          else if(game.isGameOver()) gameOver();
+          
+          if(game.isGameOver()) gameOver();
           else{
                 io.sockets.emit("day summary", decision); //client needs to figure out who died based on change in .alive booleans (in response to day summary request)
                 for(i =0; i<game.players.length; i++)
