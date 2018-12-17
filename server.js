@@ -89,14 +89,14 @@ socket.on("day res", function(dayRes){
           let decision = game.day(dayResList);
           console.log("DAY VOTE ENDED: "+ decision); //changes game.players based on Vote
           dayResList=[];
-
+ io.sockets.emit("Test");
           
           if(game.isGameOver()){
            gameOver();
            }
           else{
-            
-                io.sockets.emit("day summary", decision);
+             io.sockets.emit("day summary", decision);
+               
                  //client needs to figure out who died based on change in .alive booleans (in response to day summary request)
                
                 for(i =0; i<game.players.length; i++){
