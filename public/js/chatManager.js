@@ -220,7 +220,7 @@ function isAlphaNumeric(str) {
                if(serverPlayerList[i].name===decision)
                     {
 
-                         serverPlayerList[i].alive != serverPlayerList[i].alive;
+                         serverPlayerList[i].alive = false;
                     }
           }
           if(myName===decision){
