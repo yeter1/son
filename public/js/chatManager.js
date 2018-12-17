@@ -218,18 +218,17 @@ function isAlphaNumeric(str) {
      socket.on("day summary", function(decision){
           for(i=0; i<serverPlayerList.length; i++){
                if(serverPlayerList[i].name===decision)
-                    { if (!serverPlayerList[i].alive) 
-                      {
+                    {
+                      if (serverPlayerList[i].alive = true)
+                       {
+                            serverPlayerList[i].alive = false;
 
-                            serverPlayerList[i].alive = true;
-                       }
-                     else
-                      {
+                       }   else {
+                                     serverPlayerList[i].alive = true;
+                                  
+                                }
 
-                        serverPlayerList[i].alive = false;
-                       }
-
-                         
+                        
                     }
           }
           if(myName===decision){
@@ -238,8 +237,6 @@ function isAlphaNumeric(str) {
           updateUsernames();
           $stDialogue.prepend('<p id="daySumP">'+ decision + ' has been killed by popular demand from pp comunity! </p>');
      });
-
-    
 
      $dayForm.on("click", "#dayFormButton", function(){
           let dayVote = $('input[name=villageList]:checked').val(); //get selected radio button
