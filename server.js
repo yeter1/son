@@ -83,26 +83,30 @@ socket.on("ready user", function(ready)
 
 socket.on("day res", function(dayRes){
      dayResList.push(dayRes);
-$stDialogue.prepend("Check1");
+
      if(dayResList.length > game.alivePlayers - 1){
-$stDialogue.prepend("Check2");
+
           let decision = game.day(dayResList);
           console.log("DAY VOTE ENDED: "+ decision); //changes game.players based on Vote
           dayResList=[];
-$stDialogue.prepend("Check3");
+
           
-          if(game.isGameOver()) gameOver();
+          if(game.isGameOver()){
+           gameOver();
+      }
           else{
-               $stDialogue.prepend("Check4");
-                io.sockets.emit("day summary", decision); //client needs to figure out who died based on change in .alive booleans (in response to day summary request)
+            
+                io.sockets.emit("day summary", decision);
+                 //client needs to figure out who died based on change in .alive booleans (in response to day summary request)
+                 serverNight();
                 for(i =0; i<game.players.length; i++)
 		    if(game.players[i].name === decision && game.players[i].role == 2){
 
                hunterKilled();
               }
 			
-		$stDialogue.prepend("Check5");
-                     serverNight();
+		
+                     
                  
            }
      }
