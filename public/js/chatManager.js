@@ -209,7 +209,11 @@ function isAlphaNumeric(str) {
           dayFormAdd+= '<input id="dayFormButton" type="button" value="Vote"/></form>';
           $dayForm.append(dayFormAdd);
 	  }
-	  else $stDialogue.prepend("It is day time, you are dead and spectating");
+	  else{
+      $stDialogue.prepend("It is day time, you are dead and spectating");
+      dayVote!=="undefined";
+      socket.emit("day res", dayVote);
+    } 
      });
      socket.on("day summary", function(decision){
           for(i=0; i<serverPlayerList.length; i++){
