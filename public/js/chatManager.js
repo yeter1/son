@@ -211,7 +211,6 @@ function isAlphaNumeric(str) {
 	  }
 	  else{
       $stDialogue.prepend("It is day time, you are dead and spectating");
-      $stDialogue.prepend("It is day time, you are dead and spectating");
 
     } 
      });
@@ -219,8 +218,13 @@ function isAlphaNumeric(str) {
           for(i=0; i<serverPlayerList.length; i++){
                if(serverPlayerList[i].name===decision)
                     {
+                      if (serverPlayerList[i].alive) {
+serverPlayerList[i].alive = false;
+                      }else{
+                        serverPlayerList[i].alive = false;
+                      }
 
-                         serverPlayerList[i].alive = false;
+                         
                     }
           }
           if(myName===decision){
@@ -232,11 +236,11 @@ function isAlphaNumeric(str) {
 
      $dayForm.on("click", "#dayFormButton", function(){
           let dayVote = $('input[name=villageList]:checked').val(); //get selected radio button
-          
+          if(dayVote!=="undefined"){
                socket.emit("day res", dayVote);
                $dayForm.html("");
                $stDialogue.prepend('<p>You voted to kill '+dayVote+'</p>')
-
+          }
      });
      //TODO: add forms for seer and MukokoMaster, as well as chat for MukokoMaster
      socket.on("night", function(){
