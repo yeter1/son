@@ -84,7 +84,7 @@ socket.on("ready user", function(ready)
 socket.on("day res", function(dayRes){
      dayResList.push(dayRes);
 
-    
+     if(dayResList.length == game.alivePlayers){
 
           let decision = game.day(dayResList);
           console.log("DAY VOTE ENDED: "+ decision); //changes game.players based on Vote
@@ -92,7 +92,7 @@ socket.on("day res", function(dayRes){
 
           if(decision==="ERR_TIE"){
                serverDay(true);
-               $stDialogue.prepend("Haram Hata1");
+               $stDialogue.prepend("Haram");
           }
           else if(game.isGameOver()) gameOver();
           else{
@@ -104,7 +104,7 @@ socket.on("day res", function(dayRes){
                      serverNight();
                  
            }
-     
+     }
 });
 
 socket.on("send wolfMessage", function(data){
