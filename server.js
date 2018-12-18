@@ -84,35 +84,26 @@ socket.on("ready user", function(ready)
 
 socket.on("day res", function(dayRes){
      dayResList.push(dayRes);
-     dayReadyCount++;
 
-     if(dayReadyCount > game.alivePlayers - 1){
+     if(dayResList.length == game.alivePlayers){
 
           let decision = game.day(dayResList);
           console.log("DAY VOTE ENDED: "+ decision); //changes game.players based on Vote
           dayResList=[];
 
-          
-                if(decision==="ERR_TIE"){
+          if(decision==="ERR_TIE"){
                serverDay(true);
           }
           else if(game.isGameOver()) gameOver();
-                 else{
-            
-                io.sockets.emit("day summary", decision);
-                serverNight();
-                 //client needs to figure out who died based on change in .alive booleans (in response to day summary request)
-               
-                for(i =0; i<game.players.length; i++){
-		               if(game.players[i].name === decision && game.players[i].role == 2){
-
-                           hunterKilled();
-                            }
-			
-		
-                    }
-                   
-                    }
+          else{
+                io.sockets.emit("day summary", decision); //client needs to figure out who died based on change in .alive booleans (in response to day summary request)
+                for(i =0; i<game.players.length; i++)
+              if(game.players[i].name === decision && game.players[i].role == 2)
+               hunterKilled();
+          setTimeout(function(){
+                     serverNight();
+                }, TIME_DELAY);
+           }
      }
 });
 
