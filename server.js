@@ -93,9 +93,10 @@ socket.on("day res", function(dayRes){
           dayResList=[];
 
           
-                if(game.isGameOver()){
-                 gameOver();
-                  }
+                if(decision==="ERR_TIE"){
+               serverDay(true);
+          }
+          else if(game.isGameOver()) gameOver();
                  else{
             
                 io.sockets.emit("day summary", decision);
