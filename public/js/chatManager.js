@@ -285,6 +285,10 @@ socket.emit("day res", dayVote);
                     nightFormAdd+= '<input id="nightFormButton" type="button" value="Vote"/></form>';
                     $nightForm.append(nightFormAdd);
 
+               } else if(myRole == 2){
+
+$stDialogue.prepend('<p class="nightTime">Yuksek Sesle Okuma! Bug var, duzeltmedim...</p> Oy Veriyormus gibi yap</p>');
+        let nightFormAdd = '';
                }
                //2 is hunter, doesnt have special effect at night, should mimic villager
                //3 is villager, but no need to check, only option left
