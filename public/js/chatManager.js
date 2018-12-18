@@ -237,13 +237,13 @@ function isAlphaNumeric(str) {
 
      $dayForm.on("click", "#dayFormButton", function(){
           let dayVote = $('input[name=villageList]:checked').val(); //get selected radio button
-          if(dayVote!=="undefined"){
-               socket.emit("day res", dayVote);
+          if(dayVote =="undefined"){
+                $stDialogue.prepend('whatdafaaaaaaaaaaaaaaaaa')
+          }else {
+socket.emit("day res", dayVote);
                $dayForm.html("");
                $stDialogue.prepend('<p>You voted to kill '+dayVote+'</p>')
-          }else {
-
-             $stDialogue.prepend('whatdafaaaaaaaaaaaaaaaaa')
+            
           }
      });
      //TODO: add forms for seer and MukokoMaster, as well as chat for MukokoMaster
