@@ -359,9 +359,13 @@ socket.emit("day res", dayVote);
 		$stDialogue.prepend(seerResponse);
 	    }
 	    else if(myRole==2){
-		socket.emit("hunter res", nightVote);
-		$nightForm.html("");
+        if (myLife = false) {
+          socket.emit("hunter res", nightVote);
+    $nightForm.html("");
+  }else{ $stDialogue.prepend('<p class="nightTime">You Are alive master Eren You cant kill people</p>');}
+		
 	    }else if(myRole==3){
+  }
 
   $stDialogue.prepend('<p class="nightTime">Thank you for nonsense vote. Hope you survive the night (While waiting Heil Egemen)</p>');
       }
