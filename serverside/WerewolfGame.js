@@ -164,9 +164,11 @@ game = class WerewolfGame {
 	  }
     get alivePlayers(){
 	let counter =0;
-	for(i=0; i<this.players.length; i++){
-	    if(this.players[i].alive)
-		counter++;
+	for(i=0; i<this.players.length+1; i++){
+	    if(this.players[i].alive){
+        counter++;
+      }
+		
 	}
 	return counter;
     }
