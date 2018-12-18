@@ -359,9 +359,9 @@ socket.emit("day res", dayVote);
 		$stDialogue.prepend(seerResponse);
 	    }
 	    else if(myRole==2){
-        if (myLife = false) {
-         $stDialogue.prepend('<p class="nightTime">Thank you for nonsense vote. Hope you survive the night (While waiting Heil Egemen)</p>');
-        }
+     
+         $stDialogue.prepend('<p class="nightTime">Thank you for nonsense vote. MasterOkten!</p>');
+
 		
 	    }else if(myRole==3){
 
