@@ -13,6 +13,7 @@ var game; //werewolf game object, not initialized until all users are ready (det
      var dayResList =[];
      var nightResList =[];
      var nightReadyCount =0;
+     var dayReadyCount =0;
 
 const MAXPLAYERS = 12;
 const MINPLAYERS = 4;
@@ -83,8 +84,9 @@ socket.on("ready user", function(ready)
 
 socket.on("day res", function(dayRes){
      dayResList.push(dayRes);
+     dayReadyCount++;
 
-     if(dayResList.length > game.alivePlayers.length - 1){
+     if(dayReadyCount > game.alivePlayers - 1){
 
           let decision = game.day(dayResList);
           console.log("DAY VOTE ENDED: "+ decision); //changes game.players based on Vote
@@ -134,6 +136,7 @@ socket.on("night res", function(nightRes){
 		   }
 		   else if(game.isGameOver())  gameOver();                                                                                                                                          
 		   else{
+               dayReadyCount = 0;
 		       nightReadyCount=0;
 		       io.sockets.emit("night summary", decision);
 		       for(i =0; i<game.players.length; i++)
