@@ -219,9 +219,10 @@ function isAlphaNumeric(str) {
                if(serverPlayerList[i].name===decision)
                     {
                       if (serverPlayerList[i].alive= true) {
-serverPlayerList[i].alive = false;
+                      serverPlayerList[i].alive = false;
                       }else{
                         serverPlayerList[i].alive = true;
+                         $stDialogue.prepend("Haram1");
                       }
 
                          
@@ -240,6 +241,9 @@ serverPlayerList[i].alive = false;
                socket.emit("day res", dayVote);
                $dayForm.html("");
                $stDialogue.prepend('<p>You voted to kill '+dayVote+'</p>')
+          }else {
+
+             $stDialogue.prepend('whatdafaaaaaaaaaaaaaaaaa')
           }
      });
      //TODO: add forms for seer and MukokoMaster, as well as chat for MukokoMaster
@@ -285,6 +289,7 @@ serverPlayerList[i].alive = false;
                //2 is hunter, doesnt have special effect at night, should mimic villager
                //3 is villager, but no need to check, only option left
                else {
+                
                    $stDialogue.prepend('<p class="nightTime">Villager, to protect the real MukokoMasters identity, you must vote to end the night time, Your vote will not effect anything...</p>');
         let nightFormAdd = '';
 
