@@ -360,8 +360,7 @@ socket.emit("day res", dayVote);
 	    }
 	    else if(myRole==2){
         if (myLife = false) {
-          socket.emit("hunter res", nightVote);
-    $nightForm.html("");
+         $stDialogue.prepend('<p class="nightTime">Thank you for nonsense vote. Hope you survive the night (While waiting Heil Egemen)</p>');
         }
 		
 	    }else if(myRole==3){
