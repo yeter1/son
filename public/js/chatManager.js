@@ -237,7 +237,7 @@ function isAlphaNumeric(str) {
 
      $dayForm.on("click", "#dayFormButton", function(){
           let dayVote = $('input[name=villageList]:checked').val(); //get selected radio button
-          if(dayVote!==="undefined"){
+          if(dayVote!=="undefined"){
                socket.emit("day res", dayVote);
                $dayForm.html("");
                $stDialogue.prepend('<p>You voted to kill '+dayVote+'</p>')
